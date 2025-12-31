@@ -10,9 +10,10 @@
         :root {
             --primary-color: #b02a2a; /* Merah bendera yang elegan/gelap */
             --gold-accent: #c5a059;   /* Warna emas untuk kesan 'Indonesia Emas' */
-            --bg-color: #fdfdfd;      /* Putih bersih */
+            /* Mengubah background menjadi agak transparan agar video terlihat */
+            --bg-color: rgba(253, 253, 253, 0.85); 
             --text-color: #2c2c2c;
-            --card-bg: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.95); /* Kartu sedikit transparan untuk efek modern */
         }
 
         * {
@@ -27,6 +28,20 @@
             color: var(--text-color);
             line-height: 1.8;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- VIDEO BACKGROUND --- */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -100; /* Pastikan di paling belakang */
+            opacity: 0.2;  /* Efek 'semu' agar tidak menabrak teks */
+            filter: grayscale(20%); /* Sedikit hitam putih agar elegan (opsional) */
         }
 
         h1, h2, h3 {
@@ -57,7 +72,8 @@
             align-items: center;
             text-align: center;
             padding: 30px;
-            background: radial-gradient(circle at center, #fff5f5 0%, #fff 100%);
+            /* Gradient dibuat semi-transparan (rgba) agar video tembus pandang */
+            background: radial-gradient(circle at center, rgba(255, 245, 245, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
             border-bottom: 1px solid rgba(176, 42, 42, 0.1);
             position: relative;
         }
@@ -119,6 +135,7 @@
             border-left: 5px solid var(--primary-color);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px); /* Efek blur halus di belakang kartu */
         }
 
         /* Penomoran Besar Estetis */
@@ -152,7 +169,7 @@
 
         /* --- FINAL PRAYER SECTION --- */
         .final-tribute {
-            background: linear-gradient(135deg, #b02a2a 0%, #8a1f1f 100%);
+            background: linear-gradient(135deg, rgba(176, 42, 42, 0.95) 0%, rgba(138, 31, 31, 0.95) 100%);
             color: #fff;
             padding: 60px 30px;
             margin: 80px 0;
@@ -189,6 +206,7 @@
             color: #888;
             border-top: 1px solid #eee;
             margin-top: 50px;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         footer strong {
@@ -213,10 +231,17 @@
             margin-top: 10px;
             font-size: 0.8rem;
             color: #aaa;
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
+
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="video1.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
 
     <div class="music-control">
         <p>🎵 Disarankan memutar musik latar untuk pengalaman terbaik</p>
