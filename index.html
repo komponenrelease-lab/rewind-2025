@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia Rewind 2025 - Kilas Balik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS / GAYA TAMPILAN --- */
+        :root {
+            --primary-color: #b02a2a; /* Merah bendera yang elegan/gelap */
+            --gold-accent: #c5a059;   /* Warna emas untuk kesan 'Indonesia Emas' */
+            --bg-color: #fdfdfd;      /* Putih bersih */
+            --text-color: #2c2c2c;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif; /* Font yang lebih tegas dan megah */
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 1em;
+            color: #555;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background: radial-gradient(circle at center, #fff5f5 0%, #fff 100%);
+            border-bottom: 1px solid rgba(176, 42, 42, 0.1);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero .year {
+            font-size: 6rem;
+            line-height: 1;
+            color: var(--gold-accent);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+
+        .hero p.subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            animation: bounce 2s infinite;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- STORY SECTIONS (TEXT CARDS) --- */
+        .story-section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+            position: relative;
+        }
+
+        .story-section.muncul {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Penomoran Besar Estetis */
+        .number-bg {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 5rem;
+            font-family: 'Cinzel', serif;
+            color: rgba(0,0,0,0.03);
+            font-weight: bold;
+            z-index: 0;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            border-bottom: 2px solid var(--gold-accent);
+            padding-bottom: 5px;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            text-align: justify;
+        }
+
+        /* --- FINAL PRAYER SECTION --- */
+        .final-tribute {
+            background: linear-gradient(135deg, #b02a2a 0%, #8a1f1f 100%);
+            color: #fff;
+            padding: 60px 30px;
+            margin: 80px 0;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(176, 42, 42, 0.3);
+        }
+
+        .final-tribute h2 {
+            color: #fff; /* Override primary color */
+            font-size: 2rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .final-tribute p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+        }
+
+        .highlight-year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold-accent);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        footer strong {
+            color: var(--primary-color);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Music Player Styling */
+        .music-control {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="music-control">
+        <p>🎵 Disarankan memutar musik latar untuk pengalaman terbaik</p>
+        <audio controls style="width: 200px; opacity: 0.6;">
+            <source src="musik.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <section class="hero">
+        <span class="year">2025</span>
+        <h1>Indonesia Rewind</h1>
+        <p class="subtitle">Sebuah catatan perjalanan bangsa. Antara tawa, air mata, perjuangan, dan harapan yang merajut kita menjadi satu.</p>
+        <div class="scroll-hint">Geser ke bawah untuk melihat jejak kita</div>
+    </section>
+
+    <div class="container">
+        
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">01</div>
+                <h3 class="card-title">Era Kepemimpinan Baru</h3>
+                <div class="card-content">
+                    <p>Tahun ini menjadi awal sejarah baru dengan pelantikan Presiden dan Wakil Presiden terpilih secara penuh. Transisi pemerintahan berjalan, membawa visi baru "Bersama Membangun Negeri", meski dinamika politik sempat menghangat di awal tahun.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">02</div>
+                <h3 class="card-title">IKN Nusantara Berdenyut</h3>
+                <div class="card-content">
+                    <p>Mimpi panjang itu kini nyata. Ibu Kota Nusantara di Kalimantan resmi beroperasi penuh untuk pusat pemerintahan inti. Upacara kemerdekaan yang megah di sana menjadi simbol pemerataan pembangunan yang bukan lagi sekadar wacana.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">03</div>
+                <h3 class="card-title">Garuda Mendunia</h3>
+                <div class="card-content">
+                    <p>Tangis haru pecah di stadion. Timnas Sepakbola Indonesia mencatatkan sejarah emas, melaju jauh di kancah Asia dan memberikan perlawanan sengit di kualifikasi dunia. Persatuan suporter tahun ini adalah yang terkuat yang pernah kita rasakan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">04</div>
+                <h3 class="card-title">Program Makan Bergizi</h3>
+                <div class="card-content">
+                    <p>Realisasi program makan bergizi gratis bagi siswa sekolah mulai berjalan masif. Meski menuai pro dan kontra dalam pelaksanaannya, senyum anak-anak di pelosok negeri yang kini terjamin gizinya menjadi pemandangan yang menyejukkan hati.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">05</div>
+                <h3 class="card-title">Ujian Bencana Alam</h3>
+                <div class="card-content">
+                    <p>Ibu Pertiwi sempat menangis. Erupsi gunung berapi dan banjir di beberapa wilayah menjadi duka kita bersama. Namun, di saat itulah gotong royong bangsa ini teruji. Bantuan mengalir tanpa sekat suku dan agama, membuktikan kita bersaudara.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">06</div>
+                <h3 class="card-title">80 Tahun Indonesia Merdeka</h3>
+                <div class="card-content">
+                    <p>Delapan dekade kita berdiri sebagai bangsa merdeka. Perayaan tahun ini terasa lebih sakral, menjadi momen refleksi menuju Indonesia Emas 2045. Semangat nasionalisme berkobar di setiap sudut kota hingga desa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">07</div>
+                <h3 class="card-title">Konektivitas Tanpa Batas</h3>
+                <div class="card-content">
+                    <p>Perluasan jalur Kereta Cepat dan jalan tol trans-pulau semakin memangkas jarak. Ekonomi daerah-daerah yang dulunya sulit dijangkau kini mulai menggeliat bangkit, membuka ribuan peluang baru bagi UMKM lokal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">08</div>
+                <h3 class="card-title">Kebangkitan Sinema & Seni</h3>
+                <div class="card-content">
+                    <p>Film-film karya anak bangsa mendominasi bioskop dan memenangkan penghargaan internasional. Budaya pop Indonesia mulai menjadi tuan rumah di negeri sendiri, mengalahkan dominasi tontonan luar negeri.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">09</div>
+                <h3 class="card-title">Tantangan Ekonomi & PHK</h3>
+                <div class="card-content">
+                    <p>Tidak semua berjalan mulus. Gelombang efisiensi di sektor teknologi dan pabrik tekstil menjadi catatan kelam ekonomi tahun ini. Banyak saudara kita yang berjuang mencari nafkah baru, menuntut kita untuk lebih peduli dan saling bantu.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="text-card">
+                <div class="number-bg">10</div>
+                <h3 class="card-title">Stabilitas Demokrasi Lokal</h3>
+                <div class="card-content">
+                    <p>Pilkada serentak telah usai. Meski riuh rendah kampanye sempat memecah konsentrasi, kedewasaan berpolitik rakyat Indonesia semakin matang. Kita menutup tahun dengan rekonsiliasi demi kemajuan daerah masing-masing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section final-tribute">
+            <h2>Menyongsong 2026</h2>
+            <div style="max-width: 500px; margin: 0 auto;">
+                <p>
+                    2025 mengajarkan kita bahwa 'Bangkit' bukan berarti tidak pernah jatuh, melainkan berani berdiri lagi setiap kali terjatuh.<br><br>
+                    Untuk setiap air mata yang jatuh di tahun ini, semoga digantikan dengan kebahagiaan berlipat di tahun depan.<br>
+                    Untuk setiap kerja keras yang belum terbayar, semoga tahun depan menjadi masa panen yang melimpah.<br><br>
+                    Mari kita melangkah ke <span class="highlight-year">2026</span> dengan kepala tegak, hati yang bersih, dan optimisme yang tak padam.<br>
+                    Indonesia Tangguh, Indonesia Tumbuh.
+                </p>
+                <p style="margin-top: 30px; font-style: italic; opacity: 0.8;">Bismillah untuk lembaran baru.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Dibuat dengan kasih oleh Asa Yosua Christandy<br>&copy; 2026 All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- JAVASCRIPT UNTUK EFEK SCROLL ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // Muncul ketika 20% elemen terlihat
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('muncul');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
